@@ -21,6 +21,8 @@ for (const file of pages) {
   const rel = relative(OUT, file).replace(/\\/g, "/");
   const is404 = rel === "404.html" || rel === "_not-found.html" || rel.startsWith("_not-found");
   if (rel.startsWith("_next/")) continue;
+  // Google Search Console's ownership file is a one-line text file, not a page.
+  if (/^google[0-9a-f]+\.html$/.test(rel)) continue;
   const html = readFileSync(file, "utf8");
   const fail = (msg) => problems.push(`${rel}: ${msg}`);
 
