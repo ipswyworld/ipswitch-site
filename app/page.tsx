@@ -55,6 +55,35 @@ export default function Home() {
             </p>
           </section>
 
+          <section className="method" id="story">
+            <h2>Where it started</h2>
+            <p className="note">Dates and roles as listed on my CV.</p>
+            <dl>
+              <div>
+                <dt>2018 – 2020</dt>
+                <dd>
+                  Data analyst and IT officer at Nairobi City County Government. Network infrastructure, Hadoop-backed
+                  datasets, and first-line support for county staff.
+                </dd>
+              </div>
+              <div>
+                <dt>2020 – 2022</dt>
+                <dd>
+                  Contract frontend and systems engineer. Dashboards and offline-tolerant apps for field teams on
+                  unstable networks, with idempotent actions so state stays recoverable.
+                </dd>
+              </div>
+              <div>
+                <dt>2022 – now</dt>
+                <dd>
+                  Freelance senior engineer: payments, reliability, CI/CD and ops tooling for clients, and my own
+                  platforms alongside: Chama Cha Mimi na Wewe (live), RentPin (pre-launch) and Ouroboros Network
+                  (testnet).
+                </dd>
+              </div>
+            </dl>
+          </section>
+
           <section className="method" id="method">
             <h2>How it is built</h2>
             <p className="note">From client and contract engagements, 2022 to now, as described in my CV.</p>

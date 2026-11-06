@@ -27,7 +27,7 @@ export function LeverFrame() {
                 className="lever"
                 aria-pressed={bits[i] === 1}
                 aria-label={`Bit ${i + 1} of 8, letter ${ACCESSIBLE_LETTERS[i]}, place value ${PLACES[i]}`}
-                onClick={() => toggle(i, ACCESSIBLE_LETTERS[i])}
+                onClick={() => toggle(i)}
               >
                 <span className="stop l" />
                 <span className="stop r" />

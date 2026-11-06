@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer, Header } from "@/components/SiteChrome";
@@ -70,6 +71,20 @@ export default async function WorkPage({ params }: Props) {
             </tr>
           </tbody>
         </table>
+
+        {p.shots && p.shots.length > 0 && (
+          <>
+            <h2 className="plate-h2">The live product</h2>
+            <div className="shots">
+              {p.shots.map((s) => (
+                <figure key={s.src}>
+                  <Image src={s.src} alt={s.alt} width={s.w} height={s.h} sizes="(max-width: 700px) 100vw, 60vw" />
+                  <figcaption>{s.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </>
+        )}
 
         <h2 className="plate-h2">How it works</h2>
         <ul className="how">

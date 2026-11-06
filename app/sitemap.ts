@@ -5,9 +5,11 @@ export const dynamic = "force-static";
 
 const SITE_URL = process.env.SITE_URL ?? "https://ipswitch.co.ke";
 
+const PAGES = ["/", "/writing/", "/writing/cpanel-python-selector-blank-500/", "/work-with-me/", "/cv/"];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: `${SITE_URL}/` },
+    ...PAGES.map((p) => ({ url: `${SITE_URL}${p}` })),
     ...PROJECTS.map((p) => ({ url: `${SITE_URL}/work/${p.slug}/` })),
   ];
 }

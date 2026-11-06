@@ -11,7 +11,7 @@ export function Header() {
         <nav aria-label="Primary">
           <Link href="/#work">Work</Link>
           <Link href="/#proof">Proof</Link>
-          <Link href="/#method">Method</Link>
+          <Link href="/writing/">Writing</Link>
           <Link href="/#contact">Contact</Link>
         </nav>
       </header>

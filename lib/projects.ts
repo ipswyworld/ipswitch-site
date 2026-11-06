@@ -15,6 +15,7 @@ export type Project = {
   how: string[];
   honest: string[];
   links: { label: string; href: string }[];
+  shots?: { src: string; alt: string; w: number; h: number; caption: string }[];
 };
 
 export const PROJECTS: Project[] = [
@@ -93,6 +94,22 @@ export const PROJECTS: Project[] = [
       "SQLite is the right choice on this plan because there is no PostgreSQL and the filesystem is persistent. It is a constraint-driven decision, not a general recommendation.",
     ],
     links: [{ label: "chamachamiminawewe.co.ke", href: "https://chamachamiminawewe.co.ke" }],
+    shots: [
+      {
+        src: "/work/ccmw-desktop.png",
+        alt: "The Chama Cha Mimi na Wewe home page on desktop: a deep blue hero with four pillars and a membership call to action.",
+        w: 1440,
+        h: 900,
+        caption: "Home page, desktop. Captured from the live site.",
+      },
+      {
+        src: "/work/ccmw-mobile.jpg",
+        alt: "The same home page on a phone.",
+        w: 750,
+        h: 1624,
+        caption: "Home page, phone. Captured from the live site.",
+      },
+    ],
   },
 ];
 

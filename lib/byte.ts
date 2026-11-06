@@ -11,13 +11,6 @@ export const TARGET = 44;
 export const TARGET_BITS = [0, 0, 1, 0, 1, 1, 0, 0] as const;
 export const INTRO_ORDER = [2, 4, 5] as const; // S, I, T throw in turn: 32, 40, 44
 
-// The coloured levers are the three flagship projects.
-export const WIRED: Record<string, string> = {
-  P: "rentpin",
-  W: "ouroboros-network",
-  C: "chama-cha-mimi-na-wewe",
-};
-
 export function sum(bits: readonly number[]): number {
   return bits.reduce((s, b, i) => s + (b ? PLACES[i] : 0), 0);
 }

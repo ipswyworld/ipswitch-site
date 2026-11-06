@@ -194,3 +194,60 @@ button.lever[aria-pressed="true"]:hover .arm { transform: translateX(-50%) rotat
   .readout .dec.land { animation: none; }
   .disk.armed .seg { transform: none; }
 }
+
+/* ---- inner pages: writing, terms, cv ---- */
+.page-h1 { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.4rem, 7vw, 5rem); line-height: 0.92; text-wrap: balance; margin-top: 28px; }
+.post-list { list-style: none; padding: 0; margin: 34px 0 0; max-width: 72ch; }
+.post-list a { display: block; padding: 22px 0; border-top: 2px solid rgba(201,204,212,0.2); text-decoration: none; }
+.post-list a:hover .post-title { color: var(--yellow); }
+.post-title { display: block; font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.5rem, 3.4vw, 2.4rem); line-height: 1; transition: color 220ms var(--ease-out); text-wrap: balance; }
+.post-dek { display: block; margin-top: 8px; color: var(--silver-dim); max-width: 60ch; }
+.prose { max-width: 68ch; }
+.prose h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-top: 44px; }
+.prose p { margin-top: 14px; }
+.prose code { font-family: var(--mono); font-size: 0.85em; color: var(--yellow); }
+.prose pre { margin: 16px 0 0; padding: 16px 18px; background: var(--ground-2); border-radius: 4px; overflow-x: auto; }
+.prose pre code { color: var(--silver); font-size: 0.8125rem; line-height: 1.6; }
+.prose a { text-decoration-color: var(--violet); text-decoration-thickness: 2px; }
+.prose-foot { margin-top: 40px; color: var(--silver-dim); font-size: 0.9375rem; }
+.prose-p { margin-top: 14px; max-width: 64ch; }
+.note-block { margin-top: 22px; max-width: 64ch; color: var(--silver-dim); font-size: 0.9375rem; }
+.terms { margin: 18px 0 0; max-width: 78ch; }
+.terms > div { padding: 18px 0; border-top: 1px solid rgba(201,204,212,0.18); }
+.terms dt { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.3rem, 2.6vw, 1.8rem); }
+.terms dd { margin: 6px 0 0; max-width: 62ch; }
+.cv-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cv-actions .plate-link { margin-top: 0; }
+.cv-contact { margin-top: 10px; color: var(--silver-dim); font-size: 0.9375rem; overflow-wrap: anywhere; }
+.skills { margin: 14px 0 0; }
+.skills > div { display: grid; grid-template-columns: 9em minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid rgba(201,204,212,0.18); }
+.skills dt { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.75rem; color: var(--silver-dim); padding-top: 3px; }
+.skills dd { margin: 0; }
+.job { margin-top: 26px; }
+.job-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.job-head h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.3rem, 2.6vw, 1.8rem); line-height: 1.05; }
+.job-when { font-family: var(--mono); font-size: 0.8125rem; color: var(--silver-dim); font-variant-numeric: tabular-nums; }
+.job-where { color: var(--silver-dim); margin-top: 2px; }
+@media (max-width: 640px) { .skills > div { grid-template-columns: 1fr; gap: 2px; } }
+
+@page { margin: 14mm; }
+@media print {
+  html, body { background: #fff; color: #17171c; }
+  header.bar, .foot, .cv-actions, .back { display: none; }
+  .plate-page { padding: 0; max-width: none; }
+  .page-h1, .plate-h2, .job-head h3 { color: #17171c; }
+  .page-h1 { font-size: 30pt; margin-top: 0; }
+  .plate-h2 { font-size: 15pt; margin-top: 18pt; border-bottom: 1.5pt solid #17171c; padding-bottom: 3pt; }
+  .tagline, .cv-contact, .job-where, .job-when, .skills dt, .note-block { color: #4a4d58; }
+  .how li, .skills > div { border-color: #d3d5dc; padding-top: 4pt; padding-bottom: 4pt; }
+  a { color: #17171c; text-decoration: none; }
+  .job { break-inside: avoid; }
+  body { font-size: 10pt; line-height: 1.4; }
+}
+
+/* ---- screenshots on plate pages ---- */
+.shots { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 0.8fr); gap: clamp(16px, 3vw, 32px); margin-top: 18px; align-items: start; }
+.shots figure { margin: 0; }
+.shots img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--ground-2); box-shadow: 0 14px 28px -12px rgba(0,0,0,0.7); }
+.shots figcaption { margin-top: 10px; color: var(--silver-dim); font-size: 0.875rem; }
+@media (max-width: 700px) { .shots { grid-template-columns: 1fr; } .shots figure:nth-child(2) { max-width: 260px; } }

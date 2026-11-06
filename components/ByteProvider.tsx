@@ -8,8 +8,8 @@ type ByteState = {
   value: number;
   intro: boolean;
   landed: number;
-  active: string | null;
-  toggle: (index: number, letter: string) => void;
+  active: number | null;
+  toggle: (index: number) => void;
   reset: () => void;
 };
 
@@ -25,7 +25,7 @@ export function ByteProvider({ children }: { children: React.ReactNode }) {
   const [bits, setBits] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0]);
   const [intro, setIntro] = useState(true);
   const [landed, setLanded] = useState(0);
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<number | null>(null);
 
   // The one authored moment: from all-zero, levers S, I and T throw in turn (32, 40, 44).
   useEffect(() => {
@@ -56,9 +56,9 @@ export function ByteProvider({ children }: { children: React.ReactNode }) {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const toggle = useCallback((index: number, letter: string) => {
+  const toggle = useCallback((index: number) => {
     setBits((b) => b.map((v, i) => (i === index ? (v ? 0 : 1) : v)));
-    setActive(letter);
+    setActive(index);
   }, []);
 
   const reset = useCallback(() => {
