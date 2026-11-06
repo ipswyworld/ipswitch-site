@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow, Big_Shoulders_Stencil_Display, Martian_Mono } from "next/font/google";
+import { Barlow, Big_Shoulders_Stencil, Martian_Mono } from "next/font/google";
 import "./globals.css";
 
-const display = Big_Shoulders_Stencil_Display({
+// The optical-size axis gives the display cut at large sizes, matching the logo outlines.
+const display = Big_Shoulders_Stencil({
   subsets: ["latin"],
+  axes: ["opsz"],
   variable: "--font-display",
   display: "swap",
 });

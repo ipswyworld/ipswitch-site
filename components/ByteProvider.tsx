@@ -36,9 +36,14 @@ export function ByteProvider({ children }: { children: React.ReactNode }) {
       setLanded((n) => n + 1);
     };
     if (reduce) {
-      setBits([...TARGET_BITS]);
-      finish();
-      return;
+      // Skip the animation: land on 44 straight away (deferred, so no synchronous setState in the effect).
+      timers.push(
+        setTimeout(() => {
+          setBits([...TARGET_BITS]);
+          setIntro(false);
+        }, 0),
+      );
+      return () => timers.forEach(clearTimeout);
     }
     INTRO_ORDER.forEach((bit, n) => {
       timers.push(
