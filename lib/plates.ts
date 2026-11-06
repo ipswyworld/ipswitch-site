@@ -45,8 +45,8 @@ export const PLATES: Plate[] = [
       { label: "Path", value: "County IT, then contract engineering, then freelance senior engineer" },
       { label: "Education", value: "BSc Computer Science, St. Paul's University" },
     ],
-    href: "/#story",
-    cta: "Read the story",
+    href: "/about/",
+    cta: "About Ipswitch",
   },
   project("rentpin", 1),
   {

@@ -41,3 +41,20 @@ script. The page only ever shows the last result and its age, never an uptime fi
   and refuses to publish if it fails.
 - Structured data names the site owner by full name, with "Ipswitch" and "1PSW1TCH" as alternate names.
   Change `PERSON_NAME` and `PERSON_ALT` in `lib/seo.ts` to alter it everywhere at once.
+
+## Answer engines (AEO)
+
+- **AI crawler policy** is in `app/robots.ts`: answer and search bots (for example OAI-SearchBot, ChatGPT-User,
+  PerplexityBot, Claude-SearchBot) are welcome; bots that collect training data (GPTBot, ClaudeBot, CCBot,
+  Google-Extended and others) are asked to stay out. robots.txt is a request, not enforcement, and the list is not
+  exhaustive. Blocking Google-Extended does not affect normal Google Search.
+- **Short answers** live in `lib/posts.ts` (`summary`) and appear at the top of each article and in its structured data.
+- **The About page** and its Q&A are driven by `lib/faq.ts`. Keep every answer something the site can back up.
+- **`/llms.txt`** is a plain-text guide for AI tools. It is a proposed convention that no major engine has confirmed
+  it uses, so nothing depends on it.
+- **Bing / IndexNow:** `scripts/indexnow.mjs` runs after each push and tells Bing which URLs changed. The key file
+  is `public/<key>.txt` (the key is public by design). Also add the site in Bing Webmaster Tools
+  (https://www.bing.com/webmasters), which can import it from Google Search Console. Bing's index feeds
+  ChatGPT search and Copilot.
+- Nothing can guarantee an answer engine cites you, and there is no reliable way to measure it. The levers are
+  clear facts, one consistent description of who you are across your profiles, and pages that state the answer first.

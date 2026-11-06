@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-const PAGES = ["/", "/writing/", "/work-with-me/", "/cv/"];
+const PAGES = ["/", "/about/", "/writing/", "/work-with-me/", "/cv/"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const latest = POSTS[0].date;

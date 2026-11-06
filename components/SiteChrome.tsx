@@ -25,6 +25,7 @@ export function Footer() {
       <div className="wrap foot-row">
         <p>Ipswitch · software and DevOps · Nairobi, Kenya</p>
         <nav aria-label="Footer">
+          <Link href="/about/">About</Link>
           <Link href="/writing/">Writing</Link>
           <a href="/feed.xml">RSS</a>
           <Link href="/cv/">CV</Link>

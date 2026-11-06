@@ -262,7 +262,7 @@ html[data-splash="play"] .splash { display: grid; animation: sp-out 2000ms linea
 .sp-l.mid { max-width: 0; opacity: 0; animation: sp-open 650ms var(--ease-out) forwards; animation-delay: calc(720ms + var(--i, 0) * 55ms); }
 @keyframes sp-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes sp-open { from { max-width: 0; opacity: 0; } to { max-width: 1.15em; opacity: 1; } }
-.sp-hint { font-size: 0.8125rem; color: var(--silver-dim); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
+.sp-hint { font-size: 0.8125rem; color: var(--silver-dim); letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ---- play with the byte ---- */
 .setbyte { margin-top: 16px; }
@@ -343,3 +343,15 @@ html[data-splash="play"] .splash { display: grid; animation: sp-out 2000ms linea
   html { background: #fff !important; }
   body { background: #fff !important; }
 }
+
+/* ---- answer-first blocks: short answer on articles, Q&A on the About page ---- */
+.shortanswer { margin: 22px 0 0; padding: 16px 18px; background: var(--ground-2); border-radius: 6px; max-width: 68ch; }
+.shortanswer-label { margin: 0 !important; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.72rem; color: var(--yellow); }
+.shortanswer p:last-child { margin-top: 6px; font-size: 1.0625rem; }
+.faq { margin: 14px 0 0; max-width: 72ch; }
+.faq > div { padding: 18px 0; border-top: 1px solid rgba(201,204,212,0.18); }
+.faq dt { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.05; }
+.faq dd { margin: 8px 0 0; }
+.faq dd a, .links-inline a { text-decoration-color: var(--violet); text-decoration-thickness: 2px; }
+.links-inline { margin-top: 14px; color: var(--silver-dim); font-size: 0.9375rem; overflow-wrap: anywhere; }
+@media print { .shortanswer { background: none; padding: 0; } }

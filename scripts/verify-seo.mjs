@@ -83,7 +83,33 @@ else {
   for (const p of urlPaths) if (!sitemap.includes(`${p}</loc>`)) problems.push(`sitemap.xml is missing ${p}`);
   notes.push(`sitemap.xml lists ${(sitemap.match(/<url>/g) || []).length} URLs`);
 }
-if (!existsSync(join(OUT, "robots.txt"))) problems.push("robots.txt is missing");
+// robots.txt: the owner's policy is that answer bots are welcome and training bots are not.
+const robots = existsSync(join(OUT, "robots.txt")) ? readFileSync(join(OUT, "robots.txt"), "utf8") : "";
+if (!robots) problems.push("robots.txt is missing");
+else {
+  if (!/User-Agent: \*\s*\nAllow: \//i.test(robots)) problems.push("robots.txt no longer allows everyone by default");
+  for (const bot of ["GPTBot", "ClaudeBot", "CCBot", "Google-Extended"]) {
+    if (!new RegExp(`User-Agent: ${bot}`, "i").test(robots)) problems.push(`robots.txt does not block the training bot ${bot}`);
+  }
+  for (const bot of ["OAI-SearchBot", "PerplexityBot", "ChatGPT-User", "Googlebot", "Bingbot"]) {
+    if (new RegExp(`User-Agent: ${bot}[\\s\\S]*?Disallow: /`, "i").test(robots)) problems.push(`robots.txt must not block ${bot}`);
+  }
+  if (!/Sitemap: https:\/\/ipswitch\.co\.ke\/sitemap\.xml/.test(robots)) problems.push("robots.txt does not point to the sitemap");
+}
+// llms.txt and the IndexNow key file
+const llms = existsSync(join(OUT, "llms.txt")) ? readFileSync(join(OUT, "llms.txt"), "utf8") : "";
+if (!llms.startsWith("# ")) problems.push("llms.txt is missing or does not start with a title");
+else notes.push(`llms.txt: ${(llms.match(/\]\(https:/g) || []).length} links`);
+const indexNowKey = (readFileSync("scripts/indexnow.mjs", "utf8").match(/const KEY = "([0-9a-f]{32})"/) || [])[1];
+if (!indexNowKey || !existsSync(join(OUT, `${indexNowKey}.txt`)) || readFileSync(join(OUT, `${indexNowKey}.txt`), "utf8").trim() !== indexNowKey)
+  problems.push("IndexNow key file is missing or does not match scripts/indexnow.mjs");
+// Every article must carry its short answer, and the About page its FAQ.
+for (const f of pages) {
+  const r = relative(OUT, f).replace(/\\/g, "/");
+  const h = readFileSync(f, "utf8");
+  if (/^writing\/[^/]+\/index\.html$/.test(r) && !h.includes("Short answer")) problems.push(`${r}: no short-answer block`);
+  if (r === "about/index.html" && !/"@type":"FAQPage"/.test(h)) problems.push("about/index.html: no FAQPage structured data");
+}
 
 notes.unshift(`${pages.filter((f) => !relative(OUT, f).startsWith("_next")).length} pages checked`);
 console.log(notes.join(" · "));

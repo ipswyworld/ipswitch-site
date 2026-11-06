@@ -34,7 +34,7 @@ export function ArticleShell({
               mainEntityOfPage: url,
               image: `${SITE_URL}/og/post-${slug}.png`,
               inLanguage: "en",
-              ...(post ? { datePublished: post.date } : {}),
+              ...(post ? { datePublished: post.date, dateModified: post.date, abstract: post.summary } : {}),
               author,
               publisher: author,
             },
@@ -69,6 +69,12 @@ export function ArticleShell({
               </time>{" "}
               · Ipswitch
             </p>
+          )}
+          {post && (
+            <aside className="shortanswer" aria-label="Short answer">
+              <p className="shortanswer-label">Short answer</p>
+              <p>{post.summary}</p>
+            </aside>
           )}
           {children}
           {foot && <p className="prose-foot">{foot}</p>}

@@ -43,6 +43,19 @@ jobs:
         with:
           path: out
 
+  # After a push (not the three-hourly rebuild), tell Bing which URLs changed. Never fails the deploy.
+  indexnow:
+    needs: deploy
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/indexnow.mjs
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

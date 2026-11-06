@@ -44,6 +44,23 @@ export function pageMeta({ title, description, path, image = DEFAULT_OG, type = 
   };
 }
 
+/** The one definition of the site owner, shared by the home page and the About page so they cannot disagree. */
+export function personNode() {
+  return {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#person`,
+    name: PERSON_NAME,
+    alternateName: PERSON_ALT,
+    url: `${SITE_URL}/`,
+    jobTitle: "Software and DevOps engineer",
+    description:
+      "Builds, ships and runs whole systems, often inside hard limits: payments reliability, CI/CD, ops tooling and full-stack builds.",
+    address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
+    sameAs: SAME_AS,
+    knowsAbout: ["Payments reliability", "DevOps", "CI/CD", "Python", "TypeScript", "FastAPI", "Next.js"],
+  };
+}
+
 /** Shortens text to at most n characters at a word boundary, for meta descriptions. */
 export function clip(s: string, n = 155): string {
   const one = s.replace(/\s+/g, " ").trim();
