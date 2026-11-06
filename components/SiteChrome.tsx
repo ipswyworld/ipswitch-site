@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 
 export function Header() {
   return (
@@ -22,8 +22,14 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="foot">
-      <div className="wrap">
+      <div className="wrap foot-row">
         <p>Ipswitch · software and DevOps · Nairobi, Kenya</p>
+        <nav aria-label="Footer">
+          <Link href="/writing/">Writing</Link>
+          <a href="/feed.xml">RSS</a>
+          <Link href="/cv/">CV</Link>
+          <Link href="/work-with-me/">Terms</Link>
+        </nav>
       </div>
     </footer>
   );

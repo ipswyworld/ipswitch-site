@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { notFound } from "next/navigation";
 import { DIAGRAMS } from "@/components/Diagrams";
+import { JsonLd } from "@/components/JsonLd";
 import { LiveStatus } from "@/components/LiveStatus";
 import { Footer, Header } from "@/components/SiteChrome";
 import { BY_SLUG, PROJECTS } from "@/lib/projects";
+import { SITE_URL, clip, pageMeta } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -19,7 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = BY_SLUG[slug];
   if (!p) return {};
-  return { title: p.name, description: `${p.name}: ${p.tagline}` };
+  return pageMeta({
+    title: p.name,
+    description: clip(`${p.tagline} ${p.summary}`),
+    path: `/work/${p.slug}/`,
+    image: `/og/project-${p.slug}.png`,
+  });
 }
 
 const CAP_VAR: Record<string, string> = { P: "--violet", W: "--turquoise", C: "--yellow" };
@@ -30,10 +37,34 @@ export default async function WorkPage({ params }: Props) {
   if (!p) notFound();
   const Diagram = DIAGRAMS[p.slug];
 
+  const url = `${SITE_URL}/work/${p.slug}/`;
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CreativeWork",
+              name: p.name,
+              description: p.summary,
+              url,
+              image: `${SITE_URL}/og/project-${p.slug}.png`,
+              creator: { "@type": "Person", name: "Ipswitch", url: `${SITE_URL}/` },
+              inLanguage: "en",
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Ipswitch", item: `${SITE_URL}/` },
+                { "@type": "ListItem", position: 2, name: p.name, item: url },
+              ],
+            },
+          ],
+        }}
+      />
       <Header />
-      <main className="wrap plate-page">
+      <main id="main" className="wrap plate-page">
         <Link className="back" href="/#work">
           ← Back to the frame
         </Link>

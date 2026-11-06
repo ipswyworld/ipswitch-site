@@ -37,6 +37,8 @@ jobs:
           # Unset means the contact form and analytics are simply not shown or loaded.
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
           NEXT_PUBLIC_GOATCOUNTER: ${{ vars.GOATCOUNTER_CODE }}
+      # Refuses to publish if a page lost its title, description, canonical, share image or structured data.
+      - run: npm run verify
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

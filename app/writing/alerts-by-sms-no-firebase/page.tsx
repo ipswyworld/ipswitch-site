@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { ArticleShell } from "@/components/ArticleShell";
+import { postMeta } from "@/lib/postMeta";
 
-export const metadata: Metadata = {
-  title: "Alerts without Firebase: SMS with a budget",
-  description:
-    "How RentPin reaches a closed app with capped text messages instead of push notifications: what is sent, who gets it, and the limits that keep the cost down.",
-};
+export const metadata = postMeta("alerts-by-sms-no-firebase");
 
 export default function Page() {
   return (
     <ArticleShell
+      slug="alerts-by-sms-no-firebase"
       title="Alerts without Firebase: SMS with a budget"
       dek="How RentPin reaches a closed app with capped text messages instead of push notifications."
       foot={

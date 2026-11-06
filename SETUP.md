@@ -29,3 +29,15 @@ script. The page only ever shows the last result and its age, never an uptime fi
 ## Deploying
 
 `npm run build` writes the finished site to `out/`. Pushing to `main` deploys it to GitHub Pages.
+
+## Search and RSS
+
+- Every page's title, description, canonical URL and share image come from `lib/seo.ts` (`pageMeta`).
+  Article details live in `lib/posts.ts`, which also drives the writing index, the sitemap and the RSS feed.
+- Share images are in `public/og/`. They are generated from the brand type; regenerate them when a title changes.
+- `/feed.xml` is the RSS feed. Add a post by adding an entry to `lib/posts.ts` and a page under `app/writing/`.
+- `npm run verify` (run after `npm run build`) checks every built page for a title, description, canonical URL,
+  share image, one heading and valid structured data, plus the feed and sitemap. The deploy workflow runs it
+  and refuses to publish if it fails.
+- Structured data names the site owner as "Ipswitch" (the brand), not a personal name. Change `name` in
+  `app/page.tsx` and `components/ArticleShell.tsx` if that should change.

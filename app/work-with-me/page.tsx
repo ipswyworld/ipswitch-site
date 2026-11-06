@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { Footer, Header } from "@/components/SiteChrome";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Work with me",
-  description: "What I take on, and the quickest way to start: tell me the problem and the constraint.",
-};
+  description:
+    "Payments and payout reliability, pipeline hardening, ops tooling and backend builds. Tell me the problem and the constraint.",
+  path: "/work-with-me/",
+  image: "/og/terms.png",
+});
 
 const WORK = [
   {
@@ -30,7 +33,7 @@ export default function WorkWithMe() {
   return (
     <>
       <Header />
-      <main className="wrap plate-page">
+      <main id="main" className="wrap plate-page">
         <Link className="back" href="/#work">
           ← Back to the frame
         </Link>

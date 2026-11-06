@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { PLATES } from "@/lib/plates";
 import { useByte } from "./ByteProvider";
 import { LiveStatus } from "./LiveStatus";

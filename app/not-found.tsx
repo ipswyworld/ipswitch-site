@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { ByteProvider } from "@/components/ByteProvider";
 import { LeverFrame } from "@/components/LeverFrame";
 import { Footer, Header } from "@/components/SiteChrome";
@@ -13,7 +13,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main">
         <ByteProvider autoplay={false}>
           <LeverFrame />
         </ByteProvider>

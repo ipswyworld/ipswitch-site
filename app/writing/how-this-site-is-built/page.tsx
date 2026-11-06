@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { ArticleShell } from "@/components/ArticleShell";
+import { postMeta } from "@/lib/postMeta";
 
-export const metadata: Metadata = {
-  title: "How this site is built",
-  description:
-    "A byte of levers in a static export, a splash gate in the page head, a scheduled health check, and three things that broke on the way.",
-};
+export const metadata = postMeta("how-this-site-is-built");
 
 export default function Page() {
   return (
     <ArticleShell
+      slug="how-this-site-is-built"
       title="How this site is built"
       dek="A byte of levers in a static export, a splash gate in the page head, and three things that broke on the way."
       foot={
@@ -24,8 +21,8 @@ export default function Page() {
       <p>
         The site is Next.js 16 with <code>output: &quot;export&quot;</code>: plain files, no server at runtime. That one decision
         means the same folder deploys unchanged to GitHub Pages, a cPanel account or Cloudflare Pages, which matters
-        when the host is not settled. The build is about 2.2 MB across 115 files, including a CV PDF, screenshots and the
-        share image.
+        when the host is not settled. The build is about 2.6 MB across 126 files, including a CV PDF, screenshots and a
+        share image for every page.
       </p>
 
       <h2>The frame is a byte</h2>

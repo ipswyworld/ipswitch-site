@@ -236,13 +236,13 @@ button.lever[aria-pressed="true"]:hover .arm { transform: translateX(-50%) rotat
   header.bar, .foot, .cv-actions, .back { display: none; }
   .plate-page { padding: 0; max-width: none; }
   .page-h1, .plate-h2, .job-head h3 { color: #17171c; }
-  .page-h1 { font-size: 30pt; margin-top: 0; }
-  .plate-h2 { font-size: 15pt; margin-top: 18pt; border-bottom: 1.5pt solid #17171c; padding-bottom: 3pt; }
+  .page-h1 { font-size: 26pt; margin-top: 0; }
+  .plate-h2 { font-size: 13pt; margin-top: 11pt; border-bottom: 1.5pt solid #17171c; padding-bottom: 2pt; }
   .tagline, .cv-contact, .job-where, .job-when, .skills dt, .note-block { color: #4a4d58; }
-  .how li, .skills > div { border-color: #d3d5dc; padding-top: 4pt; padding-bottom: 4pt; }
+  .how li, .skills > div { border-color: #d3d5dc; padding-top: 2.5pt; padding-bottom: 2.5pt; }
   a { color: #17171c; text-decoration: none; }
   .job { break-inside: avoid; }
-  body { font-size: 10pt; line-height: 1.4; }
+  body { font-size: 9.4pt; line-height: 1.32; } .job { margin-top: 9pt; } .prose-p { margin-top: 6pt; } .cv-contact { margin-top: 4pt; }
 }
 
 /* ---- screenshots on plate pages ---- */
@@ -325,3 +325,21 @@ html[data-splash="play"] .splash { display: grid; animation: sp-out 2000ms linea
 /* ---- 404 ---- */
 .nf { padding-top: clamp(28px, 6vh, 64px); padding-bottom: 80px; }
 .nf-code { font-family: var(--display); font-weight: 900; line-height: 0.85; font-size: clamp(6rem, 22vw, 14rem); color: var(--turquoise); }
+
+/* ---- polish: skip link, byline, footer row ---- */
+.skip { position: absolute; left: 12px; top: -80px; z-index: 200; background: var(--yellow); color: var(--ground); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8125rem; padding: 12px 16px; border-radius: 3px; text-decoration: none; transition: top 160ms var(--ease-out); }
+.skip:focus { top: 12px; outline: 3px solid var(--silver); outline-offset: 2px; }
+.byline { margin-top: 10px; color: var(--silver-dim); font-size: 0.875rem; }
+.foot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.foot-row nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem; }
+.foot-row nav a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
+.foot-row nav a:hover { border-bottom-color: var(--yellow); }
+@media print { .skip, .foot-row { display: none; } }
+@media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
+
+/* The dark colour scheme must not leak into the printed page margins. */
+@media print {
+  :root { color-scheme: light; }
+  html { background: #fff !important; }
+  body { background: #fff !important; }
+}

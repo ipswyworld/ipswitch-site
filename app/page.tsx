@@ -5,12 +5,42 @@ import { LeverFrame } from "@/components/LeverFrame";
 import { PlatePanel } from "@/components/PlatePanel";
 import { Readout } from "@/components/Readout";
 import { Footer, Header } from "@/components/SiteChrome";
+import { JsonLd } from "@/components/JsonLd";
+import { SAME_AS, SITE_URL } from "@/lib/seo";
 
 export default function Home() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "@id": `${SITE_URL}/#website`,
+              url: `${SITE_URL}/`,
+              name: "Ipswitch",
+              description: "Software and DevOps engineer in Nairobi. One engineer, the whole line.",
+              inLanguage: "en",
+            },
+            {
+              "@type": "Person",
+              "@id": `${SITE_URL}/#person`,
+              name: "Ipswitch",
+              alternateName: "1PSW1TCH",
+              url: `${SITE_URL}/`,
+              jobTitle: "Software and DevOps engineer",
+              description:
+                "Builds, ships and runs whole systems, often inside hard limits: payments reliability, CI/CD, ops tooling and full-stack builds.",
+              address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
+              sameAs: SAME_AS,
+              knowsAbout: ["Payments reliability", "DevOps", "CI/CD", "Python", "TypeScript", "FastAPI", "Next.js"],
+            },
+          ],
+        }}
+      />
       <Header />
-      <main>
+      <main id="main">
         <h1 className="sr">Ipswitch: software and DevOps engineer, Nairobi</h1>
         <ByteProvider>
           <LeverFrame />

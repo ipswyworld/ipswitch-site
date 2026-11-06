@@ -27,15 +27,23 @@ const SITE_URL = process.env.SITE_URL ?? "https://ipswitch.co.ke";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "Ipswitch", template: "%s · Ipswitch" },
+  title: { default: "Ipswitch: software and DevOps engineer, Nairobi", template: "%s · Ipswitch" },
   description:
     "Ipswitch: a software and DevOps engineer in Nairobi who builds, ships and runs whole systems, often inside hard limits.",
+  alternates: { canonical: "/", types: { "application/rss+xml": "/feed.xml" } },
   openGraph: {
-    title: "Ipswitch",
+    title: "Ipswitch: software and DevOps engineer, Nairobi",
     description: "Software and DevOps engineer in Nairobi. One engineer, the whole line.",
-    url: SITE_URL,
+    url: "/",
     siteName: "Ipswitch",
     type: "website",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "Ipswitch: One engineer. The whole line." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ipswitch: software and DevOps engineer, Nairobi",
+    description: "Software and DevOps engineer in Nairobi. One engineer, the whole line.",
+    images: ["/og/default.png"],
   },
 };
 
@@ -55,6 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: SPLASH_GATE }} />
       </head>
       <body>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
         <Splash />
         {children}
         <Analytics />

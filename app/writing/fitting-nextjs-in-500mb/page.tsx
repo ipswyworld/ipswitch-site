@@ -1,16 +1,13 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { ArticleShell } from "@/components/ArticleShell";
+import { postMeta } from "@/lib/postMeta";
 
-export const metadata: Metadata = {
-  title: "Fitting a Next.js app into a 500 MB cPanel quota",
-  description:
-    "Build off the server, ship only what runs, and keep the data where a redeploy cannot touch it: how a live Next.js and FastAPI platform fits in 500 MB.",
-};
+export const metadata = postMeta("fitting-nextjs-in-500mb");
 
 export default function Page() {
   return (
     <ArticleShell
+      slug="fitting-nextjs-in-500mb"
       title="Fitting a Next.js app into a 500 MB cPanel quota"
       dek="Build off the server, ship only what runs, and keep the data where a redeploy cannot touch it."
       foot={
@@ -37,7 +34,7 @@ export default function Page() {
         So the frontend is built off the server, on my machine, into Next&rsquo;s standalone output, which bundles only
         the modules the app actually uses. One command produces both bundles:
       </p>
-      <pre>
+      <pre tabIndex={0} aria-label="The build command">
         <code>{`SITE_URL=https://chamachamiminawewe.co.ke ./scripts/build-cpanel.sh`}</code>
       </pre>
       <p>The script runs the Next build, then assembles what the server needs and nothing else:</p>

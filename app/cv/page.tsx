@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/SiteLink";
 import { Footer, Header } from "@/components/SiteChrome";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "CV",
-  description: "Joseph Njoroge Kariuki: software and DevOps engineer, Nairobi. Experience, skills, education.",
-};
+  description:
+    "Software and DevOps engineer in Nairobi: payments reliability, CI/CD, ops tooling. Experience, skills and education, with a PDF download.",
+  path: "/cv/",
+  image: "/og/cv.png",
+});
 
 // Content comes from the owner's CV. The phone number and referees are deliberately left out.
 const SKILLS: [string, string][] = [
@@ -62,7 +65,7 @@ export default function CV() {
   return (
     <>
       <Header />
-      <main className="wrap plate-page cv">
+      <main id="main" className="wrap plate-page cv">
         <div className="cv-actions">
           <Link className="back" href="/#work">
             ← Back to the frame
