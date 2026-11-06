@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow, Big_Shoulders_Stencil, Martian_Mono } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
+import { Splash } from "@/components/Splash";
 import "./globals.css";
 
 // The optical-size axis gives the display cut at large sizes, matching the logo outlines.
@@ -42,10 +44,21 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
+// Runs before first paint. Decides whether the splash plays: home page only, once per
+// session, never for a shared ?byte= link, never with reduced motion.
+const SPLASH_GATE = `(function(){try{var p=location.pathname;if(p!=='/'&&p!=='/index.html')return;if(/[?&]byte=/.test(location.search))return;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(sessionStorage.getItem('ipswitch-splash'))return;sessionStorage.setItem('ipswitch-splash','1');document.documentElement.setAttribute('data-splash','play');}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${text.variable} ${mono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${display.variable} ${text.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SPLASH_GATE }} />
+      </head>
+      <body>
+        <Splash />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { PLATES } from "@/lib/plates";
 import { useByte } from "./ByteProvider";
+import { LiveStatus } from "./LiveStatus";
 
 const IDLE =
   "Tilt any lever. Each opens the back of its plate here. Violet, turquoise and yellow are the three flagship projects; the silver ones lead to the rest of the site.";
@@ -27,6 +28,7 @@ export function PlatePanel() {
               ))}
             </tbody>
           </table>
+          <LiveStatus key={p.slug ?? p.label} slug={p.slug} />
           <Link className="plate-link" href={p.href}>
             {p.cta}
           </Link>

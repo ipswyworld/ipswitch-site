@@ -1,4 +1,5 @@
 import { ByteProvider } from "@/components/ByteProvider";
+import { ContactForm } from "@/components/ContactForm";
 import { DiskBar } from "@/components/DiskBar";
 import { LeverFrame } from "@/components/LeverFrame";
 import { PlatePanel } from "@/components/PlatePanel";
@@ -133,6 +134,7 @@ export default function Home() {
                 </a>
               </li>
             </ul>
+            <ContactForm />
           </section>
         </div>
       </main>

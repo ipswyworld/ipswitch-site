@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Rebuild every three hours so the live-status stamp stays fresh.
+  schedule:
+    - cron: "17 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -25,9 +28,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
+      # Writes public/status.json from a real health check of the live projects.
+      - run: node scripts/check-status.mjs
       - run: npm run build
         env:
           SITE_URL: https://ipswitch.co.ke
+          # Optional. Set these as repository variables (Settings > Secrets and variables > Actions > Variables).
+          # Unset means the contact form and analytics are simply not shown or loaded.
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
+          NEXT_PUBLIC_GOATCOUNTER: ${{ vars.GOATCOUNTER_CODE }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

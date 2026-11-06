@@ -14,3 +14,31 @@ export const INTRO_ORDER = [2, 4, 5] as const; // S, I, T throw in turn: 32, 40,
 export function sum(bits: readonly number[]): number {
   return bits.reduce((s, b, i) => s + (b ? PLACES[i] : 0), 0);
 }
+
+/** 0..255 to eight bits, most significant first. */
+export function toBits(n: number): number[] {
+  const v = Math.max(0, Math.min(255, Math.trunc(n)));
+  return PLACES.map((p) => (v & p ? 1 : 0));
+}
+
+/** "00101100" or "44" (0 to 255) to a number; anything else is null. */
+export function parseByte(input: string | null | undefined): number | null {
+  if (!input) return null;
+  const s = input.trim();
+  if (/^[01]{8}$/.test(s)) return parseInt(s, 2);
+  if (/^\d{1,3}$/.test(s)) {
+    const n = parseInt(s, 10);
+    return n <= 255 ? n : null;
+  }
+  return null;
+}
+
+/** Pythagorean letter sum: A=1 ... I=9, J=1 ... R=9, S=1 ... Z=8. Non-letters are ignored. */
+export function nameSum(name: string): number {
+  let total = 0;
+  for (const ch of name.toUpperCase()) {
+    const code = ch.charCodeAt(0);
+    if (code >= 65 && code <= 90) total += ((code - 65) % 9) + 1;
+  }
+  return total;
+}

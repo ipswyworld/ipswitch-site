@@ -1,3 +1,4 @@
+import { POSTS } from "./posts";
 import { BY_SLUG } from "./projects";
 
 // Eight levers, eight plates, in lever order: I P S W I T C H.
@@ -5,6 +6,7 @@ import { BY_SLUG } from "./projects";
 // Every fact comes from the repo docs or the owner's CV.
 
 export type Plate = {
+  slug?: string; // set for project plates, so a live status check can be shown
   label: string; // short name shown on the lever's plate heading
   title: string;
   note: string;
@@ -16,6 +18,7 @@ export type Plate = {
 function project(slug: string, index: number): Plate {
   const p = BY_SLUG[slug];
   return {
+    slug: p.slug,
     label: p.name,
     title: p.name,
     note: `Lever ${index + 1} · ${p.letter} · back of the plate`,
@@ -65,9 +68,9 @@ export const PLATES: Plate[] = [
     title: "Ink",
     note: "Lever 5 · I · back of the plate",
     rows: [
-      { label: "Latest", value: "The two cPanel bugs that return a blank 500" },
-      { label: "Format", value: "Field notes from live deployments" },
-      { label: "Next", value: "More as they are earned" },
+      { label: "Latest", value: POSTS[0].title },
+      { label: "Pieces", value: `${POSTS.length} field notes so far` },
+      { label: "Format", value: "Written from live deployments and real repos" },
     ],
     href: "/writing/",
     cta: "Read the writing",

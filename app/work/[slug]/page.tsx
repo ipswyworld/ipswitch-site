@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { DIAGRAMS } from "@/components/Diagrams";
+import { LiveStatus } from "@/components/LiveStatus";
 import { Footer, Header } from "@/components/SiteChrome";
 import { BY_SLUG, PROJECTS } from "@/lib/projects";
 
@@ -26,6 +28,7 @@ export default async function WorkPage({ params }: Props) {
   const { slug } = await params;
   const p = BY_SLUG[slug];
   if (!p) notFound();
+  const Diagram = DIAGRAMS[p.slug];
 
   return (
     <>
@@ -83,6 +86,15 @@ export default async function WorkPage({ params }: Props) {
                 </figure>
               ))}
             </div>
+          </>
+        )}
+
+        <LiveStatus slug={p.slug} />
+
+        {Diagram && (
+          <>
+            <h2 className="plate-h2">The shape of it</h2>
+            <Diagram />
           </>
         )}
 
