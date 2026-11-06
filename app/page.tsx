@@ -105,6 +105,11 @@ export default function Home() {
                   GitHub · ouroboros-network
                 </a>
               </li>
+              <li>
+                <a href="https://www.linkedin.com/in/joseph-njoroge-kariuki-5027591ab/" rel="noopener">
+                  LinkedIn · Joseph Njoroge Kariuki
+                </a>
+              </li>
             </ul>
           </section>
         </div>
