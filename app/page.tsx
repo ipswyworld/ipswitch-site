@@ -60,13 +60,6 @@ export default function Home() {
             <p className="note">Dates and roles as listed on my CV.</p>
             <dl>
               <div>
-                <dt>2018 – 2020</dt>
-                <dd>
-                  Data analyst and IT officer at Nairobi City County Government. Network infrastructure, Hadoop-backed
-                  datasets, and first-line support for county staff.
-                </dd>
-              </div>
-              <div>
                 <dt>2020 – 2022</dt>
                 <dd>
                   Contract frontend and systems engineer. Dashboards and offline-tolerant apps for field teams on
