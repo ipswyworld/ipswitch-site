@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { LiveStatus } from "@/components/LiveStatus";
 import { Footer, Header } from "@/components/SiteChrome";
 import { BY_SLUG, PROJECTS } from "@/lib/projects";
-import { SITE_URL, clip, pageMeta } from "@/lib/seo";
+import { PERSON_ALT, PERSON_NAME, SITE_URL, clip, pageMeta } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -50,7 +50,7 @@ export default async function WorkPage({ params }: Props) {
               description: p.summary,
               url,
               image: `${SITE_URL}/og/project-${p.slug}.png`,
-              creator: { "@type": "Person", name: "Ipswitch", url: `${SITE_URL}/` },
+              creator: { "@type": "Person", name: PERSON_NAME, alternateName: PERSON_ALT, url: `${SITE_URL}/` },
               inLanguage: "en",
             },
             {

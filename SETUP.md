@@ -39,5 +39,5 @@ script. The page only ever shows the last result and its age, never an uptime fi
 - `npm run verify` (run after `npm run build`) checks every built page for a title, description, canonical URL,
   share image, one heading and valid structured data, plus the feed and sitemap. The deploy workflow runs it
   and refuses to publish if it fails.
-- Structured data names the site owner as "Ipswitch" (the brand), not a personal name. Change `name` in
-  `app/page.tsx` and `components/ArticleShell.tsx` if that should change.
+- Structured data names the site owner by full name, with "Ipswitch" and "1PSW1TCH" as alternate names.
+  Change `PERSON_NAME` and `PERSON_ALT` in `lib/seo.ts` to alter it everywhere at once.

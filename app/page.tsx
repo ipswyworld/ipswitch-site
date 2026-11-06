@@ -6,7 +6,7 @@ import { PlatePanel } from "@/components/PlatePanel";
 import { Readout } from "@/components/Readout";
 import { Footer, Header } from "@/components/SiteChrome";
 import { JsonLd } from "@/components/JsonLd";
-import { SAME_AS, SITE_URL } from "@/lib/seo";
+import { PERSON_ALT, PERSON_NAME, SAME_AS, SITE_URL } from "@/lib/seo";
 
 export default function Home() {
   return (
@@ -26,8 +26,8 @@ export default function Home() {
             {
               "@type": "Person",
               "@id": `${SITE_URL}/#person`,
-              name: "Ipswitch",
-              alternateName: "1PSW1TCH",
+              name: PERSON_NAME,
+              alternateName: PERSON_ALT,
               url: `${SITE_URL}/`,
               jobTitle: "Software and DevOps engineer",
               description:

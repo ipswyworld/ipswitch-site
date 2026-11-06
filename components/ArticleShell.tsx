@@ -1,6 +1,6 @@
 import Link from "@/components/SiteLink";
 import { POSTS } from "@/lib/posts";
-import { SITE_URL } from "@/lib/seo";
+import { PERSON_ALT, PERSON_NAME, SITE_URL } from "@/lib/seo";
 import { JsonLd } from "./JsonLd";
 import { Footer, Header } from "./SiteChrome";
 
@@ -19,7 +19,7 @@ export function ArticleShell({
 }) {
   const post = POSTS.find((p) => p.slug === slug);
   const url = `${SITE_URL}/writing/${slug}/`;
-  const author = { "@type": "Person", name: "Ipswitch", url: `${SITE_URL}/` };
+  const author = { "@type": "Person", name: PERSON_NAME, alternateName: PERSON_ALT, url: `${SITE_URL}/` };
   return (
     <>
       <JsonLd

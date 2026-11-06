@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 export const SITE_URL = process.env.SITE_URL ?? "https://ipswitch.co.ke";
 export const DEFAULT_OG = "/og/default.png";
 
+/** The site owner in structured data: the full name, with the brand as alternate names. */
+export const PERSON_NAME = "Joseph Njoroge Kariuki";
+export const PERSON_ALT = ["Ipswitch", "1PSW1TCH"];
+
 /** Links that identify the same person elsewhere, used in structured data. */
 export const SAME_AS = [
   "https://github.com/ipswyworld",
